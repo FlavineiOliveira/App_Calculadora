@@ -9,7 +9,9 @@ namespace App_Calc.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return Decimal.Parse(value.ToString()).ToString("C");
+            NumberFormatInfo nfi = new CultureInfo("pt-BR").NumberFormat;
+            return Decimal.Parse(value.ToString()).ToString("C", nfi);
+
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

@@ -1,120 +1,130 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="App_Calc.Views.CalcularServicoView"
              xmlns:converters="clr-namespace:App_Calc.Converters;assembly=App_Calc"
              Title="Calcular Valor">
-    <ContentPage.Resources>
+    <TabbedPage.Resources>
         <ResourceDictionary>
             <converters:CurrencyConverter x:Key="valorMonetarioConverter" />
         </ResourceDictionary>
-    </ContentPage.Resources>
-    <ContentPage.Content>
-        <ScrollView>
-            <StackLayout Padding="10">
-                <Label Text="Valor desejado de lucro" />
-                <Entry Keyboard="Numeric" Text="{Binding Entidade.ValorServico.LucroDesejado, Converter={StaticResource valorMonetarioConverter}}" />
-                <Label Text="Horas trabalhadas por dia" />
-                <Picker>
-                    <Picker.Items>
-                        <x:String>1</x:String>
-                        <x:String>2</x:String>
-                        <x:String>3</x:String>
-                        <x:String>4</x:String>
-                        <x:String>5</x:String>
-                        <x:String>6</x:String>
-                        <x:String>7</x:String>
-                        <x:String>8</x:String>
-                        <x:String>9</x:String>
-                        <x:String>10</x:String>
-                        <x:String>11</x:String>
-                        <x:String>12</x:String>
-                        <x:String>13</x:String>
-                        <x:String>14</x:String>
-                        <x:String>15</x:String>
-                        <x:String>16</x:String>
-                        <x:String>17</x:String>
-                        <x:String>18</x:String>
-                        <x:String>19</x:String>
-                        <x:String>20</x:String>
-                        <x:String>21</x:String>
-                        <x:String>22</x:String>
-                        <x:String>23</x:String>
-                        <x:String>24</x:String>
-                    </Picker.Items>
-                </Picker>
-                <Label Text="Dias trabalhados" />
-                <Entry Keyboard="Numeric" Text="{Binding Entidade.ValorServico.DiasTrabalhados}"/>
-                <Frame BorderColor="Black" BackgroundColor="Silver">
-                    <StackLayout>
-                        <Label Text="Depesas" HorizontalTextAlignment="Center" FontAttributes="Bold" />
-                        <Label Text="Nome da despesa" />
-                        <Entry Text="{Binding AdicionarDespesa.NomeDespesa}"/>
-                        <Label Text="Valor" />
-                        <Entry Keyboard="Numeric" Text="{Binding AdicionarDespesa.ValorDespesa, Converter={StaticResource valorMonetarioConverter}}" />
-                        <Button Text="Adicionar Despesa" />
-                        <BoxView HeightRequest="1" HorizontalOptions="FillAndExpand" />
-                        <Frame BorderColor="Black">
-                            <ListView ItemsSource="{Binding Entidade.DespesaCollection}">
-                                <ListView.ItemTemplate>
-                                    <DataTemplate>
-                                        <TextCell Text="{Binding NomeDespesa}" Detail="{Binding ValorDespesa}" />
-                                    </DataTemplate>
-                                </ListView.ItemTemplate>
-                            </ListView>
-                        </Frame>
-                    </StackLayout>
-                </Frame>
-                <Frame BorderColor="Black" BackgroundColor="Silver">
-                    <StackLayout>
-                        <Label Text="Custos" HorizontalTextAlignment="Center" FontAttributes="Bold" />
-                        <Label Text="Nome do custo" />
-                        <Entry Text="{Binding AdicionarCusto.NomeCusto}" />
-                        <Label Text="Valor" />
-                        <Entry Keyboard="Numeric" Text="{Binding AdicionarCusto.ValorCusto, Converter={StaticResource valorMonetarioConverter}}" />
-                        <Button Text="Adicionar Custo" />
-                        <BoxView HeightRequest="1" HorizontalOptions="FillAndExpand" />
-                        <Frame BorderColor="Black">
-                            <ListView ItemsSource="{Binding Entidade.CustoCollection}">
-                                <ListView.ItemTemplate>
-                                    <DataTemplate>
-                                        <TextCell Text="{Binding NomeCusto}" Detail="{Binding ValorCusto}" />
-                                    </DataTemplate>
-                                </ListView.ItemTemplate>
-                            </ListView>
-                        </Frame>
-                    </StackLayout>
-                </Frame>
-                <Frame BorderColor="Black" BackgroundColor="Silver">
-                    <StackLayout>
-                        <Label Text="Estudos" HorizontalTextAlignment="Center" FontAttributes="Bold" />
-                        <Label Text="Nome do curso" />
-                        <Entry Text="{Binding AdicionarEstudo.NomeCurso}" />
-                        <Label Text="Valor total de investimento" />
-                        <Entry Keyboard="Numeric" Text="{Binding AdicionarEstudo.ValorInvestimento, Converter={StaticResource valorMonetarioConverter}}" />
-                        <Label Text="Período total em meses" />
-                        <Entry Keyboard="Numeric" Text="{Binding AdicionarEstudo.PeriodoEstudado}" />
-                        <Button Text="Adicionar Estudo" />
-                        <BoxView HeightRequest="1" HorizontalOptions="FillAndExpand" />
-                        <Frame BorderColor="Black">
-                            <ListView ItemsSource="{Binding Entidade.EstudoCollection}">
-                                <ListView.ItemTemplate>
-                                    <DataTemplate>
-                                        <ViewCell>
-                                            <StackLayout>
-                                                <Label Text="{Binding NomeCurso}" />
-                                                <Label Text="{Binding ValorInvestimento}" />
-                                                <Label Text="{Binding PeriodoEstudado}" />
-                                                <Label Text="{Binding ValorProporcionalServico}" />
-                                            </StackLayout>
-                                        </ViewCell>
-                                    </DataTemplate>
-                                </ListView.ItemTemplate>
-                            </ListView>
-                        </Frame>
-                    </StackLayout>
-                </Frame>
-            </StackLayout>
-        </ScrollView>
-    </ContentPage.Content>
-</ContentPage>
+    </TabbedPage.Resources>
+    <ContentPage Title="Básico">
+        <StackLayout Padding="10">
+            <Label Text="Valor desejado de lucro" />
+            <Entry Keyboard="Numeric" Text="{Binding LucroDesejado, Converter={StaticResource valorMonetarioConverter}}" />
+            <Label Text="Horas trabalhadas por dia" />
+            <Picker Title="Horas trabalhadas">
+                <Picker.Items>
+                    <x:String>1</x:String>
+                    <x:String>2</x:String>
+                    <x:String>3</x:String>
+                    <x:String>4</x:String>
+                    <x:String>5</x:String>
+                    <x:String>6</x:String>
+                    <x:String>7</x:String>
+                    <x:String>8</x:String>
+                    <x:String>9</x:String>
+                    <x:String>10</x:String>
+                    <x:String>11</x:String>
+                    <x:String>12</x:String>
+                    <x:String>13</x:String>
+                    <x:String>14</x:String>
+                    <x:String>15</x:String>
+                    <x:String>16</x:String>
+                    <x:String>17</x:String>
+                    <x:String>18</x:String>
+                    <x:String>19</x:String>
+                    <x:String>20</x:String>
+                    <x:String>21</x:String>
+                    <x:String>22</x:String>
+                    <x:String>23</x:String>
+                    <x:String>24</x:String>
+                </Picker.Items>
+            </Picker>
+            <Label Text="Dias trabalhados" />
+            <Entry Keyboard="Numeric" Text="{Binding Entidade.ValorServico.DiasTrabalhados}"/>
+        </StackLayout>
+    </ContentPage>
+    <ContentPage Title="Despesas">
+        <StackLayout Padding="10">
+            <Label Text="Nome da despesa" />
+            <Entry Text="{Binding AdicionarDespesa.NomeDespesa}"/>
+            <Label Text="Valor" />
+            <Entry Keyboard="Numeric" Text="{Binding ValorDespesa, Converter={StaticResource valorMonetarioConverter}}" />
+            <Button Text="Adicionar Despesa" Command="{Binding AdicionarDespesaCommand}" />
+            <BoxView BackgroundColor="Black" HeightRequest="1" HorizontalOptions="FillAndExpand" />
+            <ListView ItemsSource="{Binding Entidade.DespesaCollection}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextCell Text="{Binding NomeDespesa}" Detail="{Binding ValorDespesa}" />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage>
+    <ContentPage Title="Custos">
+        <StackLayout Padding="10">
+            <Frame BorderColor="Black" BackgroundColor="Silver">
+            </Frame>
+            <Frame BorderColor="Black" BackgroundColor="Silver">
+                <StackLayout>
+                    <Label Text="Custos" HorizontalTextAlignment="Center" FontAttributes="Bold" />
+                    <Label Text="Nome do custo" />
+                    <Entry Text="{Binding AdicionarCusto.NomeCusto}" />
+                    <Label Text="Valor" />
+                    <Entry Keyboard="Numeric" Text="{Binding ValorCusto, Converter={StaticResource valorMonetarioConverter}}" />
+                    <Button Text="Adicionar Custo" />
+                    <BoxView HeightRequest="1" HorizontalOptions="FillAndExpand" />
+                    <Frame BorderColor="Black">
+                        <ListView ItemsSource="{Binding Entidade.CustoCollection}">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <TextCell Text="{Binding NomeCusto}" Detail="{Binding ValorCusto}" />
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </Frame>
+                </StackLayout>
+            </Frame>
+        </StackLayout>
+    </ContentPage>
+    <ContentPage Title="Estudos">
+        <StackLayout Padding="10">
+            <Frame BorderColor="Black" BackgroundColor="Silver">
+                <StackLayout>
+                    <Label Text="Estudos" HorizontalTextAlignment="Center" FontAttributes="Bold" />
+                    <Label Text="Nome do curso" />
+                    <Entry Text="{Binding AdicionarEstudo.NomeCurso}" />
+                    <Label Text="Valor total de investimento" />
+                    <Entry Keyboard="Numeric" Text="{Binding AdicionarEstudo.ValorInvestimento, Converter={StaticResource valorMonetarioConverter}}" />
+                    <Label Text="Período total em meses" />
+                    <Entry Keyboard="Numeric" Text="{Binding AdicionarEstudo.PeriodoEstudado}" />
+                    <Button Text="Adicionar Estudo" />
+                    <BoxView HeightRequest="1" HorizontalOptions="FillAndExpand" />
+                    <Frame BorderColor="Black">
+                        <ListView ItemsSource="{Binding Entidade.EstudoCollection}">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <StackLayout>
+                                            <Label Text="{Binding NomeCurso}" />
+                                            <Label Text="{Binding ValorInvestimento}" />
+                                            <Label Text="{Binding PeriodoEstudado}" />
+                                            <Label Text="{Binding ValorProporcionalServico}" />
+                                        </StackLayout>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </Frame>
+                </StackLayout>
+            </Frame>
+        </StackLayout>
+    </ContentPage>
+    <ContentPage Title="Resultados">
+        <StackLayout>
+            <Label Text="Última página rs" />
+        </StackLayout>
+    </ContentPage>
+</TabbedPage>

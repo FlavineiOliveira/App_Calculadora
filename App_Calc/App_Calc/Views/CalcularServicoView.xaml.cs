@@ -12,7 +12,7 @@ using Xamarin.Forms.Xaml;
 namespace App_Calc.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class CalcularServicoView : ContentPage, IMessage
+	public partial class CalcularServicoView : TabbedPage, IMessage
 	{
         CalcularServicoViewModel calcularServicoViewModel;
 

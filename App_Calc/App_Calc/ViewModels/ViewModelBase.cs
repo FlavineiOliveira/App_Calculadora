@@ -91,7 +91,7 @@ namespace App_Calc.ViewModels
             set
             {
                 _entidade = value;
-                RaisedPropertyChanged(() => Entidade);
+                RaisePropertyChanged("Entidade");
             }
         }
 
