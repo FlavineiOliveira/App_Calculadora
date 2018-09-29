@@ -1,6 +1,8 @@
 ﻿using App_Calc.Domain.Entidade;
+using App_Calc.Views;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -9,32 +11,51 @@ namespace App_Calc.ViewModels
 {
     public class CalcularServicoViewModel : ViewModelBase<RootCalcularServico>
     {
-        private Despesa adicionarDespesa;
-        private Custo adicionarCusto;
-        private Estudo adicionarEstudo;
+        //Por enquanto temporario
+        private decimal lucroDesejado;
 
-        private ValorServico teste;
+        private static ObservableCollection<Despesa> listaDespesa;
+        private static ObservableCollection<Custo> listaCusto;
+        private static ObservableCollection<Estudo> listaEstudo;
 
-        public ValorServico Teste
+        public ObservableCollection<Despesa> ListaDespesa
         {
             get
             {
-                return teste;
+                return listaDespesa;
             }
             set
             {
-                teste = value;
-                RaisePropertyChanged("Teste");
+                listaDespesa = value;
+                RaisePropertyChanged("ListaDespesa");
             }
         }
 
-        //Por enquanto temporario
-        private decimal lucroDesejado;
-        private decimal valorDespesa;
-        private decimal valorCusto;
-        private decimal valorInvestimento;
+        public ObservableCollection<Custo> ListaCusto
+        {
+            get
+            {
+                return listaCusto;
+            }
+            set
+            {
+                listaCusto = value;
+                RaisePropertyChanged("ListaCusto");
+            }
+        }
 
-        private ICommand adicionarDespesaCommand;
+        public ObservableCollection<Estudo> ListaEstudo
+        {
+            get
+            {
+                return listaEstudo;
+            }
+            set
+            {
+                listaEstudo = value;
+                RaisePropertyChanged("ListaEstudo");
+            }
+        }
 
         public decimal LucroDesejado
         {
@@ -49,102 +70,36 @@ namespace App_Calc.ViewModels
             }
         }
 
-        public decimal ValorDespesa
+        public CalcularServicoViewModel(Custo custo)
         {
-            get
-            {
-                return valorDespesa;
-            }
-            set
-            {
-                valorDespesa = value;
-                RaisePropertyChanged("ValorDespesa");
-            }
+            AdicionarCusto(custo);
         }
 
-        public decimal ValorCusto
+        public void AdicionarDespesa(Despesa despesa)
         {
-            get
-            {
-                return valorCusto;
-            }
-            set
-            {
-                valorCusto = value;
-                RaisePropertyChanged("ValorCusto");
-            }
+            if (ListaDespesa == null)
+                ListaDespesa = new ObservableCollection<Despesa>();
+
+            if (despesa.NomeDespesa != null)
+                ListaDespesa.Add(new Despesa { NomeDespesa = despesa.NomeDespesa, ValorDespesa = despesa.ValorDespesa });
         }
 
-        public decimal ValorInvestimento
+        public void AdicionarCusto(Custo custo)
         {
-            get
-            {
-                return valorInvestimento;
-            }
-            set
-            {
-                valorInvestimento = value;
-                RaisePropertyChanged("ValorInvestimento");
-            }
+            if (ListaCusto == null)
+                ListaCusto = new ObservableCollection<Custo>();
+
+            if (custo.NomeCusto != null)
+                ListaCusto.Add(new Custo { NomeCusto = custo.NomeCusto, ValorCusto = custo.ValorCusto });
         }
 
-        public Despesa AdicionarDespesa
+        public void AdicionarEstudo(Estudo estudo)
         {
-            get
-            {
-                return adicionarDespesa;
-            }
-            set
-            {
-                adicionarDespesa = value;
-                RaisePropertyChanged("AdicionarDespesa");
-            }
-        }
+            if (ListaEstudo == null)
+                ListaEstudo = new ObservableCollection<Estudo>();
 
-        public Custo AdicionarCusto
-        {
-            get
-            {
-                return adicionarCusto;
-            }
-            set
-            {
-                adicionarCusto = value;
-                RaisePropertyChanged("AdicionarCusto");
-            }
-        }
-
-        public Estudo AdicionarEstudo
-        {
-            get
-            {
-                return adicionarEstudo;
-            }
-            set
-            {
-                adicionarEstudo = value;
-                RaisePropertyChanged("AdicionarEstudo");
-            }
-        }
-
-        public CalcularServicoViewModel()
-        {
-            Teste = new ValorServico();
-            AdicionarDespesa = new Despesa();
-        }
-
-        public ICommand AdicionarDespesaCommand
-        {
-            get
-            {
-                return adicionarDespesaCommand ?? (adicionarDespesaCommand = new Command(() => 
-                {
-                    Entidade.DespesaCollection.Add(new Despesa { NomeDespesa = AdicionarDespesa.NomeDespesa, ValorDespesa = ValorDespesa });
-
-                    Message.DisplayAlert("Parabéns", string.Format("Despesa {0} adicionado na lista.", AdicionarDespesa.NomeDespesa), "Ok");
-
-                }));
-            }
+            if (estudo.NomeCurso != null)
+                ListaEstudo.Add(new Estudo { NomeCurso = estudo.NomeCurso, ValorInvestimento = estudo.ValorInvestimento, PeriodoEstudado = estudo.PeriodoEstudado, ValorProporcionalServico = 0 });
         }
 
     }

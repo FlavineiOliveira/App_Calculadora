@@ -1,4 +1,5 @@
-﻿using App_Calc.Interfaces;
+﻿using App_Calc.Domain.Entidade;
+using App_Calc.Interfaces;
 using App_Calc.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -15,12 +16,15 @@ namespace App_Calc.Views
 	public partial class CalcularServicoView : TabbedPage, IMessage
 	{
         CalcularServicoViewModel calcularServicoViewModel;
+        Custo custo;
 
         public CalcularServicoView ()
 		{
 			InitializeComponent ();
 
-            calcularServicoViewModel = new CalcularServicoViewModel
+            custo = new Custo();
+
+            calcularServicoViewModel = new CalcularServicoViewModel(custo)
             {
                 Message = this,
                 Navigation = this.Navigation
@@ -28,5 +32,20 @@ namespace App_Calc.Views
             BindingContext = calcularServicoViewModel;
 
         }
-	}
+
+        private async void AdicionarDespesa_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new AdicionarDespesaView());
+        }
+
+        private async void AdicionarCusto_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new AdicionarCustoView());
+        }
+
+        private async void AdicionarEstudo_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new AdicionarEstudosView());
+        }
+    }
 }

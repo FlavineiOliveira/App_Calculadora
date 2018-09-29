@@ -10,16 +10,11 @@ using Xamarin.Forms.Xaml;
 namespace App_Calc.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class HomeView : ContentPage
+	public partial class AdicionarEstudosView : ContentPage
 	{
-		public HomeView ()
+		public AdicionarEstudosView ()
 		{
 			InitializeComponent ();
 		}
-
-        private void Button_Clicked(object sender, EventArgs e)
-        {
-            Navigation.PushAsync(new CalcularServicoView());
-        }
-    }
+	}
 }

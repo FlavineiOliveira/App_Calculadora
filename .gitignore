@@ -259,3 +259,17 @@ paket-files/
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
 *.pyc
+
+#Ignore App_Calcproject
+
+App_Calc/App_Calc/bin/
+App_Calc/App_Calc/obj/
+
+App_Calc/App_Calc.Android/bin/
+App_Calc/App_Calc.Android/obj/
+
+App_Calc/App_Calc.iOS/bin/
+App_Calc/App_Calc.iOS/obj/
+
+App_Calc.Domain/bin/
+App_Calc.Domain/obj/
