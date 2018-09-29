@@ -11,7 +11,7 @@
     </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout Padding="10">
-            <Label Text="Nome da despesa" />
+            <Label Text="Nome do custo" />
             <Entry Text="{Binding Entidade.NomeCusto}"/>
             <Label Text="Valor" />
             <Entry Keyboard="Numeric" Text="{Binding ValorCusto, Converter={StaticResource valorMonetarioConverter}}" />

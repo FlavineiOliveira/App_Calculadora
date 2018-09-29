@@ -1,55 +1,54 @@
 ﻿using App_Calc.Domain.Entidade;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace App_Calc.ViewModels
 {
-    public class AdicionarCustosViewModel : ViewModelBase<Custo>
+    public class AdicionarDespesaViewModel : ViewModelBase<Despesa>
     {
         private CalcularServicoViewModel calcularServicoViewModel;
 
-        private ICommand incluirCustoCommand;
+        private ICommand incluirDespesasCommand;
 
-        private decimal valorCusto;
+        private decimal valorDespesa;
 
-        public decimal ValorCusto
+        public decimal ValorDespesa
         {
             get
             {
-                return valorCusto;
+                return valorDespesa;
             }
             set
             {
-                valorCusto = value;
-                RaisePropertyChanged("ValorCusto");
+                valorDespesa = value;
+                RaisePropertyChanged("ValorDespesa");
             }
         }
 
-        public AdicionarCustosViewModel()
+        public AdicionarDespesaViewModel()
         {
-            Custo custo = new Custo();
+            Despesa despesa = new Despesa();
             calcularServicoViewModel = new CalcularServicoViewModel();
         }
 
-        public ICommand IncluirCustoCommand
+        public ICommand IncluirDespesasCommand
         {
             get
             {
-                return incluirCustoCommand ?? (incluirCustoCommand = new Command ( () => 
+                return incluirDespesasCommand ?? (incluirDespesasCommand = new Command(() =>
                 {
                     try
                     {
-                        Entidade.ValorCusto = ValorCusto;
+                        Entidade.ValorDespesa = ValorDespesa;
 
-                        calcularServicoViewModel.AdicionarCusto(Entidade);    
-                        
+                        calcularServicoViewModel.AdicionarDespesa(Entidade);
+
                         Navigation.PopAsync();
                     }
-                    catch(Exception ex)
+                    catch (Exception ex)
                     {
                         Message.DisplayAlert("Erro", ex.Message, "Ok");
                     }

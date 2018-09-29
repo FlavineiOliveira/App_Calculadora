@@ -49,10 +49,10 @@
     <ContentPage Title="Despesas">
         <StackLayout Padding="10">
             <Button Text="Adicionar Despesa" Clicked="AdicionarDespesa_Clicked" />
-            <ListView ItemsSource="{Binding Entidade.DespesaCollection}">
+            <ListView ItemsSource="{Binding ListaDespesa}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <TextCell Text="{Binding NomeDespesa}" Detail="{Binding ValorDespesa}" />
+                        <TextCell Text="{Binding NomeDespesa}" TextColor="Black" Detail="{Binding ValorDespesa, Converter={StaticResource valorMonetarioConverter}}" DetailColor="Black"/>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
@@ -61,7 +61,7 @@
     <ContentPage Title="Custos">
         <StackLayout Padding="10">
             <Button Text="Adicionar Custo" Clicked="AdicionarCusto_Clicked" />
-            <ListView x:Name="ListviewCusto" ItemsSource="{Binding ListaCusto}">
+            <ListView ItemsSource="{Binding ListaCusto}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <TextCell Text="{Binding NomeCusto}" TextColor="Black" Detail="{Binding ValorCusto, Converter={StaticResource valorMonetarioConverter}}" DetailColor="Black" />
@@ -73,15 +73,15 @@
     <ContentPage Title="Estudos">
         <StackLayout Padding="10">
             <Button Text="Adicionar Estudo" Clicked="AdicionarEstudo_Clicked" />
-            <ListView ItemsSource="{Binding Entidade.EstudoCollection}">
+            <ListView ItemsSource="{Binding ListaEstudo}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout>
-                                <Label Text="{Binding NomeCurso}" />
-                                <Label Text="{Binding ValorInvestimento}" />
-                                <Label Text="{Binding PeriodoEstudado}" />
-                                <Label Text="{Binding ValorProporcionalServico}" />
+                                <Label Text="{Binding NomeCurso}" TextColor="Black" />
+                                <Label Text="{Binding ValorInvestimento, Converter={StaticResource valorMonetarioConverter}}" TextColor="Black" />
+                                <Label Text="{Binding PeriodoEstudado}" TextColor="Black" />
+                                <Label Text="{Binding ValorProporcionalServico, Converter={StaticResource valorMonetarioConverter}}" TextColor="Black" />
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>

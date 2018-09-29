@@ -24,7 +24,7 @@ namespace App_Calc.Views
 
             custo = new Custo();
 
-            calcularServicoViewModel = new CalcularServicoViewModel(custo)
+            calcularServicoViewModel = new CalcularServicoViewModel()
             {
                 Message = this,
                 Navigation = this.Navigation

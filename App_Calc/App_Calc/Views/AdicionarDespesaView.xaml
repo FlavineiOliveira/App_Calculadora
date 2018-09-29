@@ -2,14 +2,20 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="App_Calc.Views.AdicionarDespesaView"
+             xmlns:converters="clr-namespace:App_Calc.Converters;assembly=App_Calc"
              Title="Adicionar Despesas">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:CurrencyConverter x:Key="valorMonetarioConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout Padding="10">
             <Label Text="Nome da despesa" />
-            <Entry Text=""/>
+            <Entry Text="{Binding Entidade.NomeDespesa}"/>
             <Label Text="Valor" />
-            <Entry Keyboard="Numeric" Text="" />
-            <Button Text="Adicionar Despesa" Clicked="Button_Clicked" />
+            <Entry Keyboard="Numeric" Text="{Binding ValorDespesa, Converter={StaticResource valorMonetarioConverter}}" />
+            <Button Text="Adicionar Despesa" Command="{Binding IncluirDespesasCommand}" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

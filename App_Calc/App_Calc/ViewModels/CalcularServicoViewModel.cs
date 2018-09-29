@@ -70,9 +70,8 @@ namespace App_Calc.ViewModels
             }
         }
 
-        public CalcularServicoViewModel(Custo custo)
+        public CalcularServicoViewModel()
         {
-            AdicionarCusto(custo);
         }
 
         public void AdicionarDespesa(Despesa despesa)
@@ -82,6 +81,8 @@ namespace App_Calc.ViewModels
 
             if (despesa.NomeDespesa != null)
                 ListaDespesa.Add(new Despesa { NomeDespesa = despesa.NomeDespesa, ValorDespesa = despesa.ValorDespesa });
+
+            RaisePropertyChanged("ListaDespesa");
         }
 
         public void AdicionarCusto(Custo custo)
@@ -99,7 +100,9 @@ namespace App_Calc.ViewModels
                 ListaEstudo = new ObservableCollection<Estudo>();
 
             if (estudo.NomeCurso != null)
-                ListaEstudo.Add(new Estudo { NomeCurso = estudo.NomeCurso, ValorInvestimento = estudo.ValorInvestimento, PeriodoEstudado = estudo.PeriodoEstudado, ValorProporcionalServico = 0 });
+                ListaEstudo.Add(new Estudo { NomeCurso = estudo.NomeCurso, ValorInvestimento = estudo.ValorInvestimento, PeriodoEstudado = estudo.PeriodoEstudado, ValorProporcionalServico = estudo.ValorProporcionalServico });
+
+            RaisePropertyChanged("ListaEstudo");
         }
 
     }

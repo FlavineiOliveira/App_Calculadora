@@ -1,4 +1,6 @@
-﻿using System;
+﻿using App_Calc.Interfaces;
+using App_Calc.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,11 +12,20 @@ using Xamarin.Forms.Xaml;
 namespace App_Calc.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class AdicionarEstudosView : ContentPage
+	public partial class AdicionarEstudosView : ContentPage, IMessage
 	{
-		public AdicionarEstudosView ()
+        AdicionarEstudosViewModel adicionarEstudosViewModel;
+
+        public AdicionarEstudosView ()
 		{
 			InitializeComponent ();
-		}
+
+            adicionarEstudosViewModel = new AdicionarEstudosViewModel
+            {
+                Message = this,
+                Navigation = this.Navigation
+            };
+            BindingContext = adicionarEstudosViewModel;
+        }
 	}
 }

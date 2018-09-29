@@ -2,16 +2,22 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="App_Calc.Views.AdicionarEstudosView"
+             xmlns:converters="clr-namespace:App_Calc.Converters;assembly=App_Calc"
              Title="Adicionar Estudos">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:CurrencyConverter x:Key="valorMonetarioConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout Padding="10">
             <Label Text="Nome do curso" />
-            <Entry Text=""/>
+            <Entry Text="{Binding Entidade.NomeCurso}"/>
             <Label Text="Valor total de investimento" />
-            <Entry Keyboard="Numeric" Text="" />
+            <Entry Keyboard="Numeric" Text="{Binding ValorInvestimento, Converter={StaticResource valorMonetarioConverter}}" />
             <Label Text="Período total em meses" />
-            <Entry Keyboard="Numeric" Text="" />
-            <Button Text="Adicionar Estudo" />
+            <Entry Keyboard="Numeric" Text="{Binding Entidade.PeriodoEstudado}" />
+            <Button Text="Adicionar Estudo" Command="{Binding IncluirEstudosCommand}" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
