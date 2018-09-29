@@ -30,7 +30,6 @@ namespace App_Calc.ViewModels
 
         public AdicionarDespesaViewModel()
         {
-            Despesa despesa = new Despesa();
             calcularServicoViewModel = new CalcularServicoViewModel();
         }
 

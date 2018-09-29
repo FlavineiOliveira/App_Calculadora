@@ -35,8 +35,8 @@ namespace App_Calc.Domain.Entidade
     public class RootCalcularServico
     {
         public ValorServico ValorServico { get; set; }
-        public ObservableCollection<Despesa> DespesaCollection { get; set; }
-        public ObservableCollection<Custo> CustoCollection { get; set; }
-        public ObservableCollection<Estudo> EstudoCollection { get; set; }
+        public Despesa Despesa { get; set; }
+        public Custo Custo { get; set; }
+        public Estudo Estudo { get; set; }
     }
 }

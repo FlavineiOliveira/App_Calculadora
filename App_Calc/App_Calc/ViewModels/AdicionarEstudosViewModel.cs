@@ -30,7 +30,6 @@ namespace App_Calc.ViewModels
 
         public AdicionarEstudosViewModel()
         {
-            Estudo estudo = new Estudo();
             calcularServicoViewModel = new CalcularServicoViewModel();
         }
 

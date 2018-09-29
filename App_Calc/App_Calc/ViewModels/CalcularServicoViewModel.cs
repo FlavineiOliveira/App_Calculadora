@@ -1,4 +1,5 @@
-﻿using App_Calc.Domain.Entidade;
+﻿using App_Calc.Domain;
+using App_Calc.Domain.Entidade;
 using App_Calc.Views;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using Xamarin.Forms;
 
 namespace App_Calc.ViewModels
 {
-    public class CalcularServicoViewModel : ViewModelBase<RootCalcularServico>
+    public class CalcularServicoViewModel : ViewModelBase<Class1>
     {
         //Por enquanto temporario
         private decimal lucroDesejado;
@@ -72,6 +73,7 @@ namespace App_Calc.ViewModels
 
         public CalcularServicoViewModel()
         {
+
         }
 
         public void AdicionarDespesa(Despesa despesa)
@@ -81,8 +83,6 @@ namespace App_Calc.ViewModels
 
             if (despesa.NomeDespesa != null)
                 ListaDespesa.Add(new Despesa { NomeDespesa = despesa.NomeDespesa, ValorDespesa = despesa.ValorDespesa });
-
-            RaisePropertyChanged("ListaDespesa");
         }
 
         public void AdicionarCusto(Custo custo)

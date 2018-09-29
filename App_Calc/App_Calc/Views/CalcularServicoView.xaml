@@ -52,7 +52,7 @@
             <ListView ItemsSource="{Binding ListaDespesa}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <TextCell Text="{Binding NomeDespesa}" TextColor="Black" Detail="{Binding ValorDespesa, Converter={StaticResource valorMonetarioConverter}}" DetailColor="Black"/>
+                        <TextCell Text="{Binding NomeDespesa}" TextColor="Black" Detail="{Binding ValorDespesa, Converter={StaticResource valorMonetarioConverter}}" DetailColor="Black" />
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>

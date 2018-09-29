@@ -31,7 +31,6 @@ namespace App_Calc.ViewModels
 
         public AdicionarCustosViewModel()
         {
-            Custo custo = new Custo();
             calcularServicoViewModel = new CalcularServicoViewModel();
         }
 

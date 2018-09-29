@@ -16,13 +16,10 @@ namespace App_Calc.Views
 	public partial class CalcularServicoView : TabbedPage, IMessage
 	{
         CalcularServicoViewModel calcularServicoViewModel;
-        Custo custo;
 
         public CalcularServicoView ()
 		{
 			InitializeComponent ();
-
-            custo = new Custo();
 
             calcularServicoViewModel = new CalcularServicoViewModel()
             {
