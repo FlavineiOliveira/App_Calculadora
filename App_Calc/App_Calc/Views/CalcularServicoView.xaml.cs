@@ -30,6 +30,13 @@ namespace App_Calc.Views
 
         }
 
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            calcularServicoViewModel.AtualizarResultados();
+        }
+
         private async void AdicionarDespesa_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new AdicionarDespesaView());

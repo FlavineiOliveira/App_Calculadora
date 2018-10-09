@@ -39,4 +39,12 @@ namespace App_Calc.Domain.Entidade
         public Custo Custo { get; set; }
         public Estudo Estudo { get; set; }
     }
+
+    public class RootResultadoServico
+    {
+        public decimal ValorTotalProjeto { get; set; }
+        public int HorasTotalTrabalhadas { get; set; }
+        public decimal ValorHoraTrabalhada { get; set; }
+        public decimal ValorTotalDesconto { get; set; }
+    }
 }

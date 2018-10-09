@@ -1,5 +1,6 @@
 ﻿using App_Calc.Domain;
 using App_Calc.Domain.Entidade;
+using App_Calc.Services.Business;
 using App_Calc.Views;
 using System;
 using System.Collections.Generic;
@@ -10,14 +11,21 @@ using Xamarin.Forms;
 
 namespace App_Calc.ViewModels
 {
-    public class CalcularServicoViewModel : ViewModelBase<Class1>
+    public class CalcularServicoViewModel : ViewModelBase<RootCalcularServico>
     {
         //Por enquanto temporario
         private decimal lucroDesejado;
 
-        private static ObservableCollection<Despesa> listaDespesa;
-        private static ObservableCollection<Custo> listaCusto;
-        private static ObservableCollection<Estudo> listaEstudo;
+        private ResultadoServico resultadoServico;
+
+        public static ObservableCollection<Despesa> ReceberDespesaCollection;
+        public static ObservableCollection<Custo> ReceberCustoCollection;
+        public static ObservableCollection<Estudo> ReceberEstudoCollection;
+
+        private ObservableCollection<Despesa> listaDespesa;
+        private ObservableCollection<Custo> listaCusto;
+        private ObservableCollection<Estudo> listaEstudo;
+        private RootResultadoServico rootResultadoServico;
 
         public ObservableCollection<Despesa> ListaDespesa
         {
@@ -71,6 +79,19 @@ namespace App_Calc.ViewModels
             }
         }
 
+        public RootResultadoServico RootResultadoServico
+        {
+            get
+            {
+                return rootResultadoServico;
+            }
+            set
+            {
+                rootResultadoServico = value;
+                RaisePropertyChanged("RootResultadoServico");
+            }
+        }
+
         public CalcularServicoViewModel()
         {
 
@@ -78,32 +99,44 @@ namespace App_Calc.ViewModels
 
         public void AdicionarDespesa(Despesa despesa)
         {
-            if (ListaDespesa == null)
-                ListaDespesa = new ObservableCollection<Despesa>();
+            if (ReceberDespesaCollection == null)
+                ReceberDespesaCollection = new ObservableCollection<Despesa>();
 
             if (despesa.NomeDespesa != null)
-                ListaDespesa.Add(new Despesa { NomeDespesa = despesa.NomeDespesa, ValorDespesa = despesa.ValorDespesa });
+                ReceberDespesaCollection.Add(new Despesa { NomeDespesa = despesa.NomeDespesa, ValorDespesa = despesa.ValorDespesa });
         }
 
         public void AdicionarCusto(Custo custo)
         {
-            if (ListaCusto == null)
-                ListaCusto = new ObservableCollection<Custo>();
+            if (ReceberCustoCollection == null)
+                ReceberCustoCollection = new ObservableCollection<Custo>();
 
             if (custo.NomeCusto != null)
-                ListaCusto.Add(new Custo { NomeCusto = custo.NomeCusto, ValorCusto = custo.ValorCusto });
+                ReceberCustoCollection.Add(new Custo { NomeCusto = custo.NomeCusto, ValorCusto = custo.ValorCusto });
         }
 
         public void AdicionarEstudo(Estudo estudo)
         {
-            if (ListaEstudo == null)
-                ListaEstudo = new ObservableCollection<Estudo>();
+            if (ReceberEstudoCollection == null)
+                ReceberEstudoCollection = new ObservableCollection<Estudo>();
 
             if (estudo.NomeCurso != null)
-                ListaEstudo.Add(new Estudo { NomeCurso = estudo.NomeCurso, ValorInvestimento = estudo.ValorInvestimento, PeriodoEstudado = estudo.PeriodoEstudado, ValorProporcionalServico = estudo.ValorProporcionalServico });
-
-            RaisePropertyChanged("ListaEstudo");
+                ReceberEstudoCollection.Add(new Estudo { NomeCurso = estudo.NomeCurso, ValorInvestimento = estudo.ValorInvestimento, PeriodoEstudado = estudo.PeriodoEstudado, ValorProporcionalServico = estudo.ValorProporcionalServico });
         }
 
+        public void AtualizarCollections()
+        {
+            ListaDespesa = ReceberDespesaCollection;
+            ListaCusto = ReceberCustoCollection;
+            ListaEstudo = ReceberEstudoCollection;
+        }
+
+        public void AtualizarResultados()
+        {
+            AtualizarCollections();
+
+            if(Entidade.ValorServico != null && ListaDespesa != null && ListaCusto != null && ListaEstudo != null)
+                rootResultadoServico = resultadoServico.CalcularValorTotalProjeto(LucroDesejado, Entidade.ValorServico, ListaDespesa, ListaCusto, ListaEstudo);
+        }
     }
 }

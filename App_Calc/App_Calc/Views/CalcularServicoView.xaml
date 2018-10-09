@@ -92,6 +92,10 @@
     <ContentPage Title="Resultados">
         <StackLayout>
             <Label Text="Última página rs" />
+            <Label Text="{Binding RootResultadoServico.ValorTotalProjeto}" />
+            <Label Text="{Binding RootResultadoServico.ValorTotalDesconto}" />
+            <Label Text="{Binding RootResultadoServico.ValorHoraTrabalhada}" />
+            <Label Text="{Binding RootResultadoServico.HorasTotalTrabalhadas}" />
         </StackLayout>
     </ContentPage>
 </TabbedPage>
