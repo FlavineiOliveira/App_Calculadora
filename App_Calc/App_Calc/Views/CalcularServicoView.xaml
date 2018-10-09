@@ -14,7 +14,7 @@
             <Label Text="Valor desejado de lucro" />
             <Entry Keyboard="Numeric" Text="{Binding LucroDesejado, Converter={StaticResource valorMonetarioConverter}}" />
             <Label Text="Horas trabalhadas por dia" />
-            <Picker Title="Horas trabalhadas">
+            <Picker Title="Horas trabalhadas" SelectedItem="{Binding Entidade.HorasTrabalhadas}">
                 <Picker.Items>
                     <x:String>1</x:String>
                     <x:String>2</x:String>
@@ -43,7 +43,7 @@
                 </Picker.Items>
             </Picker>
             <Label Text="Dias trabalhados" />
-            <Entry Keyboard="Numeric" Text="{Binding Entidade.ValorServico.DiasTrabalhados}"/>
+            <Entry Keyboard="Numeric" Text="{Binding Entidade.DiasTrabalhados}"/>
         </StackLayout>
     </ContentPage>
     <ContentPage Title="Despesas">
@@ -90,12 +90,24 @@
         </StackLayout>
     </ContentPage>
     <ContentPage Title="Resultados">
-        <StackLayout>
-            <Label Text="Última página rs" />
-            <Label Text="{Binding RootResultadoServico.ValorTotalProjeto}" />
-            <Label Text="{Binding RootResultadoServico.ValorTotalDesconto}" />
-            <Label Text="{Binding RootResultadoServico.ValorHoraTrabalhada}" />
-            <Label Text="{Binding RootResultadoServico.HorasTotalTrabalhadas}" />
+        <StackLayout Padding="10">
+            <Label Text="Resultados" HorizontalOptions="Center" HorizontalTextAlignment="Center" />
+            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                <Label Text="Valor total do projeto: " TextColor="Black" />
+                <Label Text="{Binding RootResultadoServico.ValorTotalProjeto, Converter={StaticResource valorMonetarioConverter}}" TextColor="Black" HorizontalOptions="EndAndExpand" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                <Label Text="Valor total dos descontos: " TextColor="Black" />
+                <Label Text="{Binding RootResultadoServico.ValorTotalDesconto, Converter={StaticResource valorMonetarioConverter}}" TextColor="Black" HorizontalOptions="EndAndExpand" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                <Label Text="Valor da hora trabalhada: " TextColor="Black" />
+                <Label Text="{Binding RootResultadoServico.ValorHoraTrabalhada, Converter={StaticResource valorMonetarioConverter}}" TextColor="Black" HorizontalOptions="EndAndExpand" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                <Label Text="Carga horária total de trabalho: " TextColor="Black" />
+                <Label Text="{Binding RootResultadoServico.HorasTotalTrabalhadas}" TextColor="Black" HorizontalOptions="EndAndExpand" />
+            </StackLayout>
         </StackLayout>
     </ContentPage>
 </TabbedPage>

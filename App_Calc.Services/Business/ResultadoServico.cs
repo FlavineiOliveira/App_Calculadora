@@ -10,13 +10,28 @@ namespace App_Calc.Services.Business
     {
         public RootResultadoServico CalcularValorTotalProjeto(decimal lucro, ValorServico valorServico, ObservableCollection<Despesa> despesaCollection, ObservableCollection<Custo> custoCollection, ObservableCollection<Estudo> estudoCollection)
         {
-            RootResultadoServico rootResultadoServico = new RootResultadoServico();
-
-            rootResultadoServico.ValorTotalProjeto = lucro;
+            RootResultadoServico rootResultadoServico = new RootResultadoServico
+            {
+                ValorTotalProjeto = lucro
+            };
 
             rootResultadoServico.ValorTotalProjeto += CalcularValorTotalDespesa(despesaCollection);
             rootResultadoServico.ValorTotalProjeto += CalcularValorTotalCustos(custoCollection);
             rootResultadoServico.ValorTotalProjeto += CalcularValorTotalEstudo(estudoCollection, valorServico.DiasTrabalhados);
+
+            rootResultadoServico.HorasTotalTrabalhadas = CalcularHoraTotalTrabalhada(valorServico.HorasTrabalhadas, valorServico.DiasTrabalhados);
+
+            rootResultadoServico.ValorHoraTrabalhada = CalcularValorHora(rootResultadoServico.ValorTotalProjeto, rootResultadoServico.HorasTotalTrabalhadas);
+
+            return rootResultadoServico;
+        }
+
+        public RootResultadoServico CalcularValorTotalProjeto(decimal lucro, ValorServico valorServico)
+        {
+            RootResultadoServico rootResultadoServico = new RootResultadoServico
+            {
+                ValorTotalProjeto = lucro
+            };
 
             rootResultadoServico.HorasTotalTrabalhadas = CalcularHoraTotalTrabalhada(valorServico.HorasTrabalhadas, valorServico.DiasTrabalhados);
 

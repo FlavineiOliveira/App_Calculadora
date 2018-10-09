@@ -11,7 +11,7 @@ using Xamarin.Forms;
 
 namespace App_Calc.ViewModels
 {
-    public class CalcularServicoViewModel : ViewModelBase<RootCalcularServico>
+    public class CalcularServicoViewModel : ViewModelBase<ValorServico>
     {
         //Por enquanto temporario
         private decimal lucroDesejado;
@@ -94,7 +94,7 @@ namespace App_Calc.ViewModels
 
         public CalcularServicoViewModel()
         {
-
+            resultadoServico = new ResultadoServico();
         }
 
         public void AdicionarDespesa(Despesa despesa)
@@ -135,8 +135,18 @@ namespace App_Calc.ViewModels
         {
             AtualizarCollections();
 
-            if(Entidade.ValorServico != null && ListaDespesa != null && ListaCusto != null && ListaEstudo != null)
-                rootResultadoServico = resultadoServico.CalcularValorTotalProjeto(LucroDesejado, Entidade.ValorServico, ListaDespesa, ListaCusto, ListaEstudo);
+            rootResultadoServico = new RootResultadoServico();
+
+            if (LucroDesejado != 0 && Entidade != null && ListaDespesa != null && ListaCusto != null && ListaEstudo != null)
+            {
+                rootResultadoServico = resultadoServico.CalcularValorTotalProjeto(LucroDesejado, Entidade, ListaDespesa, ListaCusto, ListaEstudo);
+            }
+            else if(LucroDesejado!= 0 && Entidade != null)
+            {
+                rootResultadoServico = resultadoServico.CalcularValorTotalProjeto(LucroDesejado, Entidade);
+            }
+
+            RaisePropertyChanged("RootResultadoServico");
         }
     }
 }
