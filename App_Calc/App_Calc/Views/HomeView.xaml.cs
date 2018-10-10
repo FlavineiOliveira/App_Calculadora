@@ -15,11 +15,16 @@ namespace App_Calc.Views
 	{
         CalcularServicoViewModel calcularServicoViewModel;
 
+        HomeViewModel homeViewModel;
+
         public HomeView ()
 		{
 			InitializeComponent ();
 
             calcularServicoViewModel = new CalcularServicoViewModel();
+
+            homeViewModel = new HomeViewModel();
+            BindingContext = homeViewModel;
         }
 
         private void Button_Clicked(object sender, EventArgs e)

@@ -3,6 +3,7 @@ using App_Calc.Interfaces;
 using SQLite;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 using Xamarin.Forms;
 
@@ -14,13 +15,23 @@ namespace App_Calc.Database
 
         public ServicosDatabase()
         {
-            database = DependencyService.Get<IDatabase>().GetConnection();
-            database.CreateTable<RootServico>();
+            try
+            {
+                database = DependencyService.Get<IDatabase>().GetConnection();
+                database.CreateTable<Teste>();
+
+
+            }
+            catch(SQLiteException ex)
+            {
+                throw ex;
+            }
+
         }
 
-        public List<RootServico> GetServicos()
+        public List<Teste> GetServicos()
         {
-            return database.Table<RootServico>().ToList();
+            return database.Table<Teste>().ToList();
         }
 
         public int SalvarServico(RootServico servico)

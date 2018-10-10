@@ -12,7 +12,7 @@ namespace App_Calc
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new HomeView());
+            MainPage = new NavigationPage(new CalcularServicoView());
         }
 
         protected override void OnStart()

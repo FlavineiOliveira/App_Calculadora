@@ -10,7 +10,7 @@ namespace App_Calc.Droid.Interfaces
     {
         public SQLiteConnection GetConnection()
         {
-            var nomeDB = "calculadora.db";
+            var nomeDB = "calculadora.db3";
 
             var caminho = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), nomeDB);
 

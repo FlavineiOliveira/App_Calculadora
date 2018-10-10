@@ -4,10 +4,14 @@
              x:Class="App_Calc.Views.HomeView">
     <ContentPage.Content>
         <StackLayout Padding="10">
-            <Label Text="Welcome to Calculator Service!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-            <Button Text="Incluir Serviço" TextColor="White" BackgroundColor="Black" VerticalOptions="EndAndExpand" Clicked="Button_Clicked" />
+            <ListView ItemsSource="{Binding RootServicoCollection}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                      <TextCell Text="{Binding Identificador}" TextColor="Black" Detail="{Binding RootResultadoServico.ValorTotalProjeto}" DetailColor="Black" />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Button Text="Incluir Serviço" TextColor="White" BackgroundColor="Black" Clicked="Button_Clicked" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

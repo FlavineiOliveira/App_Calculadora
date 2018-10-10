@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SQLite;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
@@ -52,12 +53,27 @@ namespace App_Calc.Domain.Entidade
         public decimal ValorTotalEstudo { get; set; }
     }
 
+    [Table("RootServico")]
     public class RootServico
     {
+        [PrimaryKey, AutoIncrement]
+        public int Id { get; set; }
+
+        string Identificador { get; set; }
         public ValorServico ValorServico { get; set; }
         public ObservableCollection<Despesa> ListaDespesa { get; set; }
         public ObservableCollection<Custo> ListaCusto { get; set; }
         public ObservableCollection<Estudo> ListaEstudo { get; set; }
-        public RootResultadoServico RootResultadoServico { get; set; }
+        public RootResultadoServico RootResultadoServico { get; set; } 
+    }
+
+    [Table("Teste")]
+    public class Teste
+    {
+        [PrimaryKey, AutoIncrement]
+        public int Id { get; set; }
+
+        string Identificador { get; set; }
+        //public ValorServico ValorServico { get; set; }
     }
 }

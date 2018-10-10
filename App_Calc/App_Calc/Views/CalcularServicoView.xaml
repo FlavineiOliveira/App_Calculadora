@@ -124,11 +124,13 @@
                 <Label Text="Carga horária total de trabalho: " TextColor="Black" />
                 <Label Text="{Binding RootResultadoServico.HorasTotalTrabalhadas}" TextColor="Black" HorizontalOptions="EndAndExpand" />
             </StackLayout>
+            <!--
             <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand" >
                 <Label Text="Identificador do serviço: " TextColor="Black" />
                 <Entry HorizontalOptions="FillAndExpand" />
             </StackLayout>
             <Button Text="SALVAR CÁLCULO" Command="{Binding SalvarServicoCommand}" TextColor="White" BackgroundColor="Black" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand" />
+            -->
         </StackLayout>
     </ContentPage>
 </TabbedPage>
