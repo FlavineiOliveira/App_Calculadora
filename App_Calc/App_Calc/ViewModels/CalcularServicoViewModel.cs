@@ -1,4 +1,5 @@
-﻿using App_Calc.Domain;
+﻿using App_Calc.Database;
+using App_Calc.Domain;
 using App_Calc.Domain.Entidade;
 using App_Calc.Services.Business;
 using App_Calc.Views;
@@ -13,7 +14,8 @@ namespace App_Calc.ViewModels
 {
     public class CalcularServicoViewModel : ViewModelBase<ValorServico>
     {
-        //Por enquanto temporario
+        private ICommand salvarServicoCommand;
+
         private decimal lucroDesejado;
 
         private ResultadoServico resultadoServico;
@@ -97,6 +99,36 @@ namespace App_Calc.ViewModels
             resultadoServico = new ResultadoServico();
         }
 
+        public ICommand SalvarServicoCommand
+        {
+            get
+            {
+                return salvarServicoCommand ?? (salvarServicoCommand = new Command(() =>
+                {
+                    RootServico rootServico = new RootServico
+                    {
+                        ValorServico = new ValorServico { LucroDesejado = LucroDesejado, DiasTrabalhados = Entidade.DiasTrabalhados, HorasTrabalhadas = Entidade.HorasTrabalhadas },
+                        ListaCusto = ListaCusto,
+                        ListaDespesa = ListaDespesa,
+                        ListaEstudo = ListaEstudo,
+                        RootResultadoServico = RootResultadoServico
+                    };
+
+                    var teste = new ServicosDatabase().SalvarServico(rootServico);
+
+                    Message.DisplayAlert("", "Serviço salvo.", "Ok");
+
+                }));
+            }
+        }
+
+        public void ReiniciarListas()
+        {
+            ReceberDespesaCollection = new ObservableCollection<Despesa>();
+            ReceberCustoCollection = new ObservableCollection<Custo>();
+            ReceberEstudoCollection = new ObservableCollection<Estudo>();
+        }
+
         public void AdicionarDespesa(Despesa despesa)
         {
             if (ReceberDespesaCollection == null)
@@ -137,14 +169,10 @@ namespace App_Calc.ViewModels
 
             rootResultadoServico = new RootResultadoServico();
 
-            if (LucroDesejado != 0 && Entidade != null && ListaDespesa != null && ListaCusto != null && ListaEstudo != null)
-            {
+            //if (LucroDesejado != 0)
+           // {
                 rootResultadoServico = resultadoServico.CalcularValorTotalProjeto(LucroDesejado, Entidade, ListaDespesa, ListaCusto, ListaEstudo);
-            }
-            else if(LucroDesejado!= 0 && Entidade != null)
-            {
-                rootResultadoServico = resultadoServico.CalcularValorTotalProjeto(LucroDesejado, Entidade);
-            }
+           // }
 
             RaisePropertyChanged("RootResultadoServico");
         }

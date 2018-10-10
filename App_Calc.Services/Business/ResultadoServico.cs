@@ -1,8 +1,6 @@
 ﻿using App_Calc.Domain.Entidade;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Text;
 
 namespace App_Calc.Services.Business
 {
@@ -12,26 +10,21 @@ namespace App_Calc.Services.Business
         {
             RootResultadoServico rootResultadoServico = new RootResultadoServico
             {
-                ValorTotalProjeto = lucro
+                ValorTotalLucro = lucro
             };
 
-            rootResultadoServico.ValorTotalProjeto += CalcularValorTotalDespesa(despesaCollection);
-            rootResultadoServico.ValorTotalProjeto += CalcularValorTotalCustos(custoCollection);
-            rootResultadoServico.ValorTotalProjeto += CalcularValorTotalEstudo(estudoCollection, valorServico.DiasTrabalhados);
+            if(despesaCollection != null)
+                rootResultadoServico.ValorTotalDespesa += CalcularValorTotalDespesa(despesaCollection);
 
-            rootResultadoServico.HorasTotalTrabalhadas = CalcularHoraTotalTrabalhada(valorServico.HorasTrabalhadas, valorServico.DiasTrabalhados);
+            if (custoCollection != null)
+                rootResultadoServico.ValorTotalCusto += CalcularValorTotalCustos(custoCollection);
 
-            rootResultadoServico.ValorHoraTrabalhada = CalcularValorHora(rootResultadoServico.ValorTotalProjeto, rootResultadoServico.HorasTotalTrabalhadas);
+            if (estudoCollection != null)
+                rootResultadoServico.ValorTotalEstudo += CalcularValorTotalEstudo(estudoCollection, valorServico.DiasTrabalhados);
 
-            return rootResultadoServico;
-        }
+            rootResultadoServico.ValorTotalDesconto = (rootResultadoServico.ValorTotalDespesa + rootResultadoServico.ValorTotalCusto + rootResultadoServico.ValorTotalEstudo);
 
-        public RootResultadoServico CalcularValorTotalProjeto(decimal lucro, ValorServico valorServico)
-        {
-            RootResultadoServico rootResultadoServico = new RootResultadoServico
-            {
-                ValorTotalProjeto = lucro
-            };
+            rootResultadoServico.ValorTotalProjeto += rootResultadoServico.ValorTotalDesconto + rootResultadoServico.ValorTotalLucro;
 
             rootResultadoServico.HorasTotalTrabalhadas = CalcularHoraTotalTrabalhada(valorServico.HorasTrabalhadas, valorServico.DiasTrabalhados);
 
@@ -47,6 +40,9 @@ namespace App_Calc.Services.Business
 
         public decimal CalcularValorHora(decimal valorTotalProjeto, int horaTotalTrabalhada)
         {
+            if (valorTotalProjeto == 0)
+                return 0;
+
             return valorTotalProjeto / horaTotalTrabalhada;
         }
 
@@ -78,9 +74,7 @@ namespace App_Calc.Services.Business
         {
             decimal valorEstudos = 0;
 
-            decimal mesesTrabalhados = (diasTrabalhados / 30);
-
-            int periodoTrabalhado = Convert.ToInt32(Math.Round(mesesTrabalhados));
+            int periodoTrabalhado = Convert.ToInt32(Math.Ceiling((decimal)diasTrabalhados / 30));
 
             if (periodoTrabalhado == 0)
                 periodoTrabalhado = 1;

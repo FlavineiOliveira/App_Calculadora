@@ -48,7 +48,7 @@
     </ContentPage>
     <ContentPage Title="Despesas">
         <StackLayout Padding="10">
-            <Button Text="Adicionar Despesa" Clicked="AdicionarDespesa_Clicked" />
+            <Button Text="Adicionar Despesa" TextColor="White" BackgroundColor="Black" Clicked="AdicionarDespesa_Clicked" />
             <ListView ItemsSource="{Binding ListaDespesa}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
@@ -60,7 +60,7 @@
     </ContentPage>
     <ContentPage Title="Custos">
         <StackLayout Padding="10">
-            <Button Text="Adicionar Custo" Clicked="AdicionarCusto_Clicked" />
+            <Button Text="Adicionar Custo" TextColor="White" BackgroundColor="Black" Clicked="AdicionarCusto_Clicked" />
             <ListView ItemsSource="{Binding ListaCusto}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
@@ -72,7 +72,7 @@
     </ContentPage>
     <ContentPage Title="Estudos">
         <StackLayout Padding="10">
-            <Button Text="Adicionar Estudo" Clicked="AdicionarEstudo_Clicked" />
+            <Button Text="Adicionar Estudo" TextColor="White" BackgroundColor="Black" Clicked="AdicionarEstudo_Clicked" />
             <ListView ItemsSource="{Binding ListaEstudo}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
@@ -89,16 +89,32 @@
             </ListView>
         </StackLayout>
     </ContentPage>
-    <ContentPage Title="Resultados">
+    <ContentPage Title="Resultados" Appearing="Resultados_Appearing">
         <StackLayout Padding="10">
-            <Label Text="Resultados" HorizontalOptions="Center" HorizontalTextAlignment="Center" />
+            <Label Text="Resultados" TextColor="Black" FontAttributes="Bold" HorizontalOptions="Center" HorizontalTextAlignment="Center" />
             <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
                 <Label Text="Valor total do projeto: " TextColor="Black" />
                 <Label Text="{Binding RootResultadoServico.ValorTotalProjeto, Converter={StaticResource valorMonetarioConverter}}" TextColor="Black" HorizontalOptions="EndAndExpand" />
             </StackLayout>
             <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                <Label Text="Valor total dos lucros: " TextColor="Black" />
+                <Label Text="{Binding RootResultadoServico.ValorTotalLucro, Converter={StaticResource valorMonetarioConverter}}" TextColor="Black" HorizontalOptions="EndAndExpand" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
                 <Label Text="Valor total dos descontos: " TextColor="Black" />
                 <Label Text="{Binding RootResultadoServico.ValorTotalDesconto, Converter={StaticResource valorMonetarioConverter}}" TextColor="Black" HorizontalOptions="EndAndExpand" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                <Label Text="Valor total das despesas: " TextColor="Black" />
+                <Label Text="{Binding RootResultadoServico.ValorTotalDespesa, Converter={StaticResource valorMonetarioConverter}}" TextColor="Black" HorizontalOptions="EndAndExpand" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                <Label Text="Valor total dos custos: " TextColor="Black" />
+                <Label Text="{Binding RootResultadoServico.ValorTotalCusto, Converter={StaticResource valorMonetarioConverter}}" TextColor="Black" HorizontalOptions="EndAndExpand" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                <Label Text="Valor total dos estudos: " TextColor="Black" />
+                <Label Text="{Binding RootResultadoServico.ValorTotalEstudo, Converter={StaticResource valorMonetarioConverter}}" TextColor="Black" HorizontalOptions="EndAndExpand" />
             </StackLayout>
             <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
                 <Label Text="Valor da hora trabalhada: " TextColor="Black" />
@@ -108,6 +124,11 @@
                 <Label Text="Carga horária total de trabalho: " TextColor="Black" />
                 <Label Text="{Binding RootResultadoServico.HorasTotalTrabalhadas}" TextColor="Black" HorizontalOptions="EndAndExpand" />
             </StackLayout>
+            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand" >
+                <Label Text="Identificador do serviço: " TextColor="Black" />
+                <Entry HorizontalOptions="FillAndExpand" />
+            </StackLayout>
+            <Button Text="SALVAR CÁLCULO" Command="{Binding SalvarServicoCommand}" TextColor="White" BackgroundColor="Black" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand" />
         </StackLayout>
     </ContentPage>
 </TabbedPage>

@@ -3,11 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="App_Calc.Views.HomeView">
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout Padding="10">
             <Label Text="Welcome to Calculator Service!"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
-            <Button Text="Incluir Serviço" Clicked="Button_Clicked" />
+            <Button Text="Incluir Serviço" TextColor="White" BackgroundColor="Black" VerticalOptions="EndAndExpand" Clicked="Button_Clicked" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

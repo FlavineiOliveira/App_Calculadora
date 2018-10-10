@@ -17,7 +17,7 @@
             <Entry Keyboard="Numeric" Text="{Binding ValorInvestimento, Converter={StaticResource valorMonetarioConverter}}" />
             <Label Text="Período total em meses" />
             <Entry Keyboard="Numeric" Text="{Binding Entidade.PeriodoEstudado}" />
-            <Button Text="Adicionar Estudo" Command="{Binding IncluirEstudosCommand}" />
+            <Button Text="Incluir" TextColor="White" BackgroundColor="Black" Command="{Binding IncluirEstudosCommand}" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

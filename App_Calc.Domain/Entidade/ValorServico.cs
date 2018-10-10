@@ -43,8 +43,21 @@ namespace App_Calc.Domain.Entidade
     public class RootResultadoServico
     {
         public decimal ValorTotalProjeto { get; set; }
+        public decimal ValorTotalLucro { get; set; }
         public int HorasTotalTrabalhadas { get; set; }
         public decimal ValorHoraTrabalhada { get; set; }
         public decimal ValorTotalDesconto { get; set; }
+        public decimal ValorTotalDespesa { get; set; }
+        public decimal ValorTotalCusto { get; set; }
+        public decimal ValorTotalEstudo { get; set; }
+    }
+
+    public class RootServico
+    {
+        public ValorServico ValorServico { get; set; }
+        public ObservableCollection<Despesa> ListaDespesa { get; set; }
+        public ObservableCollection<Custo> ListaCusto { get; set; }
+        public ObservableCollection<Estudo> ListaEstudo { get; set; }
+        public RootResultadoServico RootResultadoServico { get; set; }
     }
 }

@@ -30,13 +30,6 @@ namespace App_Calc.Views
 
         }
 
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
-
-            calcularServicoViewModel.AtualizarResultados();
-        }
-
         private async void AdicionarDespesa_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new AdicionarDespesaView());
@@ -50,6 +43,11 @@ namespace App_Calc.Views
         private async void AdicionarEstudo_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new AdicionarEstudosView());
+        }
+
+        private void Resultados_Appearing(object sender, EventArgs e)
+        {
+            calcularServicoViewModel.AtualizarResultados();
         }
     }
 }
