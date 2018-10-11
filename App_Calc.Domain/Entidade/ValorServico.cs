@@ -6,6 +6,7 @@ using System.Text;
 
 namespace App_Calc.Domain.Entidade
 {
+    [Preserve(AllMembers = true)]
     public class ValorServico
     {
         public decimal LucroDesejado { get; set; }
@@ -13,18 +14,21 @@ namespace App_Calc.Domain.Entidade
         public int DiasTrabalhados { get; set; }
     }
 
+    [Preserve(AllMembers = true)]
     public class Despesa
     {
         public string NomeDespesa { get; set; }
         public decimal ValorDespesa { get; set; }
     }
 
+    [Preserve(AllMembers = true)]
     public class Custo
     {
         public string NomeCusto { get; set; }
         public decimal ValorCusto { get; set; }
     }
 
+    [Preserve(AllMembers = true)]
     public class Estudo
     {
         public string NomeCurso { get; set; }
@@ -33,6 +37,7 @@ namespace App_Calc.Domain.Entidade
         public decimal ValorProporcionalServico { get; set; }
     }
 
+    [Preserve(AllMembers = true)]
     public class RootCalcularServico
     {
         public ValorServico ValorServico { get; set; }
@@ -41,6 +46,7 @@ namespace App_Calc.Domain.Entidade
         public Estudo Estudo { get; set; }
     }
 
+    [Preserve(AllMembers = true)]
     public class RootResultadoServico
     {
         public decimal ValorTotalProjeto { get; set; }
@@ -53,6 +59,7 @@ namespace App_Calc.Domain.Entidade
         public decimal ValorTotalEstudo { get; set; }
     }
 
+    [Preserve(AllMembers = true)]
     [Table("RootServico")]
     public class RootServico
     {
@@ -67,6 +74,7 @@ namespace App_Calc.Domain.Entidade
         public RootResultadoServico RootResultadoServico { get; set; } 
     }
 
+    [Preserve(AllMembers = true)]
     [Table("Teste")]
     public class Teste
     {

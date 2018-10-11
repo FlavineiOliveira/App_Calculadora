@@ -5,9 +5,11 @@ using System.Collections.ObjectModel;
 using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
+using Xamarin.Forms.Internals;
 
 namespace App_Calc.ViewModels
 {
+    [Preserve(AllMembers = true)]
     public class AdicionarCustosViewModel : ViewModelBase<Custo>
     {
         private CalcularServicoViewModel calcularServicoViewModel;
@@ -42,11 +44,20 @@ namespace App_Calc.ViewModels
                 {
                     try
                     {
-                        Entidade.ValorCusto = ValorCusto;
+                        if(string.IsNullOrEmpty(Entidade.NomeCusto))
+                            Message.DisplayAlert("Erro", "O nome não pode estar vazio", "Ok");
 
-                        calcularServicoViewModel.AdicionarCusto(Entidade);    
-                        
-                        Navigation.PopAsync();
+                        else if(ValorCusto == 0)
+                            Message.DisplayAlert("Erro", "O valor não pode ser igual à R$0,00", "Ok");
+
+                        else
+                        {
+                            Entidade.ValorCusto = ValorCusto;
+
+                            calcularServicoViewModel.AdicionarCusto(Entidade);
+
+                            Navigation.PopAsync();
+                        }
                     }
                     catch(Exception ex)
                     {

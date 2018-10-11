@@ -6,6 +6,7 @@ using System.IO;
 [assembly:Xamarin.Forms.Dependency(typeof(DatabaseAndroid))]
 namespace App_Calc.Droid.Interfaces
 {
+    [Preserve(AllMembers = true)]
     public class DatabaseAndroid : IDatabase
     {
         public SQLiteConnection GetConnection()

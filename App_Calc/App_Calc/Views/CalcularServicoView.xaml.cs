@@ -8,11 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
+using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
 
 namespace App_Calc.Views
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
+    [Preserve(AllMembers = true)]
+    [XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class CalcularServicoView : TabbedPage, IMessage
 	{
         CalcularServicoViewModel calcularServicoViewModel;
@@ -55,6 +57,24 @@ namespace App_Calc.Views
         private void Resultados_Appearing(object sender, EventArgs e)
         {
             calcularServicoViewModel.AtualizarResultados();
+        }
+
+        private void MenuItemDespesa_Clicked(object sender, EventArgs e)
+        {
+            var item = ((MenuItem)sender).CommandParameter as Despesa;
+            calcularServicoViewModel.ListaDespesa.Remove(item);
+        }
+
+        private void MenuItemCusto_Clicked(object sender, EventArgs e)
+        {
+            var item = ((MenuItem)sender).CommandParameter as Custo;
+            calcularServicoViewModel.ListaCusto.Remove(item);
+        }
+
+        private void MenuItemEstudo_Clicked(object sender, EventArgs e)
+        {
+            var item = ((MenuItem)sender).CommandParameter as Estudo;
+            calcularServicoViewModel.ListaEstudo.Remove(item);
         }
     }
 }

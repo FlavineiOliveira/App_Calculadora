@@ -40,7 +40,7 @@ namespace App_Calc.Services.Business
 
         public decimal CalcularValorHora(decimal valorTotalProjeto, int horaTotalTrabalhada)
         {
-            if (valorTotalProjeto == 0)
+            if (valorTotalProjeto == 0 || horaTotalTrabalhada == 0)
                 return 0;
 
             return valorTotalProjeto / horaTotalTrabalhada;

@@ -12,6 +12,7 @@ using Xamarin.Forms;
 
 namespace App_Calc.ViewModels
 {
+    [Preserve(AllMembers = true)]
     public class CalcularServicoViewModel : ViewModelBase<ValorServico>
     {
         private ICommand salvarServicoCommand;

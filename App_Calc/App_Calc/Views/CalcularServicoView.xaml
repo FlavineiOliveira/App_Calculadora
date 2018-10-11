@@ -3,17 +3,17 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="App_Calc.Views.CalcularServicoView"
              xmlns:converters="clr-namespace:App_Calc.Converters;assembly=App_Calc"
-             Title="Calcular Valor">
+             Title="Calcular Valor do Serviço">
     <TabbedPage.Resources>
         <ResourceDictionary>
             <converters:CurrencyConverter x:Key="valorMonetarioConverter" />
         </ResourceDictionary>
     </TabbedPage.Resources>
-    <ContentPage Title="Básico">
+    <ContentPage Icon="basicoWhite">
         <StackLayout Padding="10">
-            <Label Text="Valor desejado de lucro" />
+            <Label Text="Valor desejado de lucro" TextColor="Black" />
             <Entry Keyboard="Numeric" Text="{Binding LucroDesejado, Converter={StaticResource valorMonetarioConverter}}" />
-            <Label Text="Horas trabalhadas por dia" />
+            <Label Text="Horas trabalhadas por dia" TextColor="Black" />
             <Picker Title="Horas trabalhadas" SelectedItem="{Binding Entidade.HorasTrabalhadas}">
                 <Picker.Items>
                     <x:String>1</x:String>
@@ -42,41 +42,52 @@
                     <x:String>24</x:String>
                 </Picker.Items>
             </Picker>
-            <Label Text="Dias trabalhados" />
+            <Label Text="Dias trabalhados" TextColor="Black" />
             <Entry Keyboard="Numeric" Text="{Binding Entidade.DiasTrabalhados}"/>
         </StackLayout>
     </ContentPage>
-    <ContentPage Title="Despesas">
+    <ContentPage Icon="despesasWhite">
         <StackLayout Padding="10">
             <Button Text="Adicionar Despesa" TextColor="White" BackgroundColor="Black" Clicked="AdicionarDespesa_Clicked" />
             <ListView ItemsSource="{Binding ListaDespesa}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <TextCell Text="{Binding NomeDespesa}" TextColor="Black" Detail="{Binding ValorDespesa, Converter={StaticResource valorMonetarioConverter}}" DetailColor="Black" />
+                        <TextCell Text="{Binding NomeDespesa}" TextColor="Black" Detail="{Binding ValorDespesa, Converter={StaticResource valorMonetarioConverter}}" DetailColor="Black">
+                            <TextCell.ContextActions>
+                                <MenuItem Text="Deletar item" Clicked="MenuItemDespesa_Clicked" CommandParameter="{Binding .}" />
+                            </TextCell.ContextActions>
+                        </TextCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
         </StackLayout>
     </ContentPage>
-    <ContentPage Title="Custos">
+    <ContentPage Icon="custosWhite">
         <StackLayout Padding="10">
             <Button Text="Adicionar Custo" TextColor="White" BackgroundColor="Black" Clicked="AdicionarCusto_Clicked" />
             <ListView ItemsSource="{Binding ListaCusto}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <TextCell Text="{Binding NomeCusto}" TextColor="Black" Detail="{Binding ValorCusto, Converter={StaticResource valorMonetarioConverter}}" DetailColor="Black" />
+                        <TextCell Text="{Binding NomeCusto}" TextColor="Black" Detail="{Binding ValorCusto, Converter={StaticResource valorMonetarioConverter}}" DetailColor="Black">
+                            <TextCell.ContextActions>
+                                <MenuItem Text="Deletar item" Clicked="MenuItemCusto_Clicked" CommandParameter="{Binding .}" />
+                            </TextCell.ContextActions>
+                        </TextCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
         </StackLayout>
     </ContentPage>
-    <ContentPage Title="Estudos">
+    <ContentPage Icon="estudosWhite">
         <StackLayout Padding="10">
             <Button Text="Adicionar Estudo" TextColor="White" BackgroundColor="Black" Clicked="AdicionarEstudo_Clicked" />
             <ListView ItemsSource="{Binding ListaEstudo}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
+                            <ViewCell.ContextActions>
+                                <MenuItem Text="Deletar item" Clicked="MenuItemEstudo_Clicked" CommandParameter="{Binding .}" />
+                            </ViewCell.ContextActions>
                             <StackLayout>
                                 <Label Text="{Binding NomeCurso}" TextColor="Black" />
                                 <Label Text="{Binding ValorInvestimento, Converter={StaticResource valorMonetarioConverter}}" TextColor="Black" />
@@ -89,9 +100,13 @@
             </ListView>
         </StackLayout>
     </ContentPage>
-    <ContentPage Title="Resultados" Appearing="Resultados_Appearing">
+    <ContentPage Icon="resultadosWhite" Appearing="Resultados_Appearing">
         <StackLayout Padding="10">
-            <Label Text="Resultados" TextColor="Black" FontAttributes="Bold" HorizontalOptions="Center" HorizontalTextAlignment="Center" />
+            <StackLayout HorizontalOptions="FillAndExpand">
+                <BoxView HeightRequest="1" Color="Black" />
+                <Label Text="RESULTADOS" TextColor="Black" FontAttributes="Bold" HorizontalOptions="Center" HorizontalTextAlignment="Center" />
+                <BoxView HeightRequest="1" Color="Black" />
+            </StackLayout>
             <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
                 <Label Text="Valor total do projeto: " TextColor="Black" />
                 <Label Text="{Binding RootResultadoServico.ValorTotalProjeto, Converter={StaticResource valorMonetarioConverter}}" TextColor="Black" HorizontalOptions="EndAndExpand" />

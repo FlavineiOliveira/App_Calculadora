@@ -4,9 +4,11 @@ using System.Collections.Generic;
 using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
+using Xamarin.Forms.Internals;
 
 namespace App_Calc.ViewModels
 {
+    [Preserve(AllMembers = true)]
     public class AdicionarEstudosViewModel : ViewModelBase<Estudo>
     {
         private CalcularServicoViewModel calcularServicoViewModel;
@@ -31,6 +33,8 @@ namespace App_Calc.ViewModels
         public AdicionarEstudosViewModel()
         {
             calcularServicoViewModel = new CalcularServicoViewModel();
+
+            Entidade.PeriodoEstudado = 1;
         }
 
         public ICommand IncluirEstudosCommand
@@ -41,12 +45,24 @@ namespace App_Calc.ViewModels
                 {
                     try
                     {
-                        Entidade.ValorInvestimento = ValorInvestimento;
-                        Entidade.ValorProporcionalServico = ValorInvestimento / Entidade.PeriodoEstudado;
+                        if (string.IsNullOrEmpty(Entidade.NomeCurso))
+                            Message.DisplayAlert("Erro", "O nome não pode estar vazio", "Ok");
 
-                        calcularServicoViewModel.AdicionarEstudo(Entidade);
+                        else if (ValorInvestimento == 0)
+                            Message.DisplayAlert("Erro", "O valor do investimento não pode ser igual à R$0,00", "Ok");
 
-                        Navigation.PopAsync();
+                        else if (Entidade.PeriodoEstudado < 1)
+                            Message.DisplayAlert("Erro", "O período não pode ser menor que 1", "Ok");
+
+                        else
+                        {
+                            Entidade.ValorInvestimento = ValorInvestimento;
+                            Entidade.ValorProporcionalServico = ValorInvestimento / Entidade.PeriodoEstudado;
+
+                            calcularServicoViewModel.AdicionarEstudo(Entidade);
+
+                            Navigation.PopAsync();
+                        }
                     }
                     catch (Exception ex)
                     {

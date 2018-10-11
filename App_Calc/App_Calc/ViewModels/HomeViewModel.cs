@@ -4,9 +4,11 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using Xamarin.Forms.Internals;
 
 namespace App_Calc.ViewModels
 {
+    [Preserve(AllMembers = true)]
     public class HomeViewModel : ViewModelBase<ValorServico>
     {
         private ObservableCollection<RootServico> rootServicoCollection;

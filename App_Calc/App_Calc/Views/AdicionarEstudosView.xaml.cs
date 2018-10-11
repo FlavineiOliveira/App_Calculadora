@@ -7,11 +7,13 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
+using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
 
 namespace App_Calc.Views
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
+    [Preserve(AllMembers = true)]
+    [XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class AdicionarEstudosView : ContentPage, IMessage
 	{
         AdicionarEstudosViewModel adicionarEstudosViewModel;

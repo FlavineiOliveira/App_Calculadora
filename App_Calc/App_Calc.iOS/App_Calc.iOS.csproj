@@ -161,4 +161,19 @@
       <Name>App_Calc</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\basico.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\custos.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\despesas.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\estudos.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\resultados.png" />
+  </ItemGroup>
 </Project>
