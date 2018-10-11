@@ -11,11 +11,11 @@
     </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout Padding="10">
-            <Label Text="Nome do curso" />
+            <Label Text="Nome do curso" TextColor="Black" />
             <Entry Text="{Binding Entidade.NomeCurso}"/>
-            <Label Text="Valor total de investimento" />
+            <Label Text="Valor total de investimento" TextColor="Black" />
             <Entry Keyboard="Numeric" Text="{Binding ValorInvestimento, Converter={StaticResource valorMonetarioConverter}}" />
-            <Label Text="Período total em meses" />
+            <Label Text="Período total em meses" TextColor="Black" />
             <Entry Keyboard="Numeric" Text="{Binding Entidade.PeriodoEstudado}" />
             <Button Text="Incluir" TextColor="White" BackgroundColor="Black" Command="{Binding IncluirEstudosCommand}" />
         </StackLayout>

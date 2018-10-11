@@ -11,9 +11,9 @@
     </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout Padding="10">
-            <Label Text="Nome do custo" />
+            <Label Text="Nome do custo" TextColor="Black" />
             <Entry Text="{Binding Entidade.NomeCusto}"/>
-            <Label Text="Valor" />
+            <Label Text="Valor" TextColor="Black" />
             <Entry Keyboard="Numeric" Text="{Binding ValorCusto, Converter={StaticResource valorMonetarioConverter}}" />
             <Button Text="Incluir" TextColor="White" BackgroundColor="Black" Command="{Binding IncluirCustoCommand}" />
         </StackLayout>
