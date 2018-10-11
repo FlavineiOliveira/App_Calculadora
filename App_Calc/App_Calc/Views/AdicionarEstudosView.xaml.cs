@@ -29,5 +29,15 @@ namespace App_Calc.Views
             };
             BindingContext = adicionarEstudosViewModel;
         }
-	}
+
+        private void NomeCurso_Completed(object sender, EventArgs e)
+        {
+            entryValorInvestimento.Focus();
+        }
+
+        private void ValorInvestimento_Completed(object sender, EventArgs e)
+        {
+            entryPeriodoEstudado.Focus();
+        }
+    }
 }

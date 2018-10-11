@@ -12,11 +12,19 @@
     <ContentPage.Content>
         <StackLayout Padding="10">
             <Label Text="Nome do curso" TextColor="Black" />
-            <Entry Text="{Binding Entidade.NomeCurso}"/>
+            <Entry Text="{Binding Entidade.NomeCurso}" ReturnType="Next" Completed="NomeCurso_Completed">
+                <Entry.Keyboard>
+                    <Keyboard x:FactoryMethod="Create">
+                        <x:Arguments>
+                            <KeyboardFlags>Suggestions,CapitalizeWord</KeyboardFlags>
+                        </x:Arguments>
+                    </Keyboard>
+                </Entry.Keyboard>
+            </Entry>
             <Label Text="Valor total de investimento" TextColor="Black" />
-            <Entry Keyboard="Numeric" Text="{Binding ValorInvestimento, Converter={StaticResource valorMonetarioConverter}}" />
+            <Entry x:Name="entryValorInvestimento" Text="{Binding ValorInvestimento, Converter={StaticResource valorMonetarioConverter}}" Keyboard="Numeric" ReturnType="Next" Completed="ValorInvestimento_Completed" />
             <Label Text="Período total em meses" TextColor="Black" />
-            <Entry Keyboard="Numeric" Text="{Binding Entidade.PeriodoEstudado}" />
+            <Entry x:Name="entryPeriodoEstudado" Keyboard="Numeric" Text="{Binding Entidade.PeriodoEstudado}" />
             <Button Text="Incluir" TextColor="White" BackgroundColor="Black" Command="{Binding IncluirEstudosCommand}" />
         </StackLayout>
     </ContentPage.Content>

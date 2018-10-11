@@ -12,9 +12,17 @@
     <ContentPage.Content>
         <StackLayout Padding="10">
             <Label Text="Nome da despesa" TextColor="Black" />
-            <Entry Text="{Binding Entidade.NomeDespesa}" />
+            <Entry Text="{Binding Entidade.NomeDespesa}" ReturnType="Next" Completed="NomeDespesa_Completed">
+                <Entry.Keyboard>
+                    <Keyboard x:FactoryMethod="Create">
+                        <x:Arguments>
+                            <KeyboardFlags>Suggestions,CapitalizeWord</KeyboardFlags>
+                        </x:Arguments>
+                    </Keyboard>
+                </Entry.Keyboard>
+            </Entry>
             <Label Text="Valor" TextColor="Black" />
-            <Entry Keyboard="Numeric" Text="{Binding ValorDespesa, Converter={StaticResource valorMonetarioConverter}}" />
+            <Entry x:Name="entryValorDespesa" Text="{Binding ValorDespesa, Converter={StaticResource valorMonetarioConverter}}" Keyboard="Numeric" ReturnType="Done" ReturnCommand="{Binding IncluirDespesasCommand}" />
             <Button Text="Incluir" TextColor="White" BackgroundColor="Black" Command="{Binding IncluirDespesasCommand}" />
         </StackLayout>
     </ContentPage.Content>

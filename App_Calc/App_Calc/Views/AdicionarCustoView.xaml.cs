@@ -29,5 +29,10 @@ namespace App_Calc.Views
             };
             BindingContext = adicionarCustoViewModel;
         }
-	}
+
+        private void NomeCusto_Completed(object sender, EventArgs e)
+        {
+            entryValorCusto.Focus();
+        }
+    }
 }

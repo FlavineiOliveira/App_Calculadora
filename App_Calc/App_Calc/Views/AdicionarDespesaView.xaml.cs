@@ -29,5 +29,10 @@ namespace App_Calc.Views
             };
             BindingContext = adicionarDespesaViewModel;
         }
+
+        private void NomeDespesa_Completed(object sender, EventArgs e)
+        {
+            entryValorDespesa.Focus();
+        }
     }
 }
